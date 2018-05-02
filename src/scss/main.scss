@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+body {
+  font-family: "Open Sans", serif;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100vh;
+}
+
+.main {
+  background-color: #ececec;
+  box-shadow: 0 13px 100px -13px rgba(0,0,0,0.75);
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.users-list {
+  list-style: none;
+}
+.users:after{
+  content: '';
+  display: block;
+
+}
