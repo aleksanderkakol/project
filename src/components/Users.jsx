@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Delete from './Delete.jsx';
 
 export class Users extends React.Component {
     constructor(props){
@@ -29,32 +28,47 @@ export class Users extends React.Component {
     };
 
 
+    // deleteUser = async () => {
+    //             fetch(`http://localhost:3000/posts/`, {
+    //                 method: 'DELETE'
+    //             })
+    //             .then(res => res)
+    //             .catch(err => err);
+    //     };
 
-    // handleDelete = (index, i) => {
-        // const url = fetch(`http://localhost:3000/posts/${index}`, {
-        //     method: 'DELETE'
-        // });
-        // this.setState(state => {
-        //     state.name = name;
-        //     return state
-        // })
-       // console.log()
-       // this.setState({
-            // name: name
-       // })
 
-    //};
+    handleDelete = (e) => {
+        //         console.log(e.currentTarget.parentElement.innerText);
+        let toMove = e.currentTarget.parentElement.innerText;
+        let users = this.state.name;
+        let newArr = [];
+        users.filter(person => {
+            if (person+' Delete' === toMove) {return person;}
+            newArr.push(person);
+        });
+
+        // console.log(newArr)
+        this.setState({
+            name: newArr
+        })
+
+
+    };
 
     render() {
-        let listOfUsers = this.state.name;
-        {listOfUsers
-            ? listOfUsers = this.state.name.map((user, i) => {
-                return <li className='users' key={i}>{user}<button onClick={this.handleDelete}>Delete</button></li>
-        })
-            : <h2>Loading...</h2>}
+        // let listOfUsers = this.state.name;
+        // {listOfUsers
+        //     ? listOfUsers = this.state.name.map((user, i) => {
+        //         return <li className='users' key={i}>{user}<button>Delete</button></li>
+        // })
+        //     : <h2>Loading...</h2>}
      return (
          <div className='main'>
-             <ul className='users-list'>{listOfUsers}</ul>
+             <div className='users-list'>{this.state.name
+                 ? this.state.name.map((user, i) => {
+                     return <div key={i}>{user} <button onClick={this.handleDelete}>Delete</button></div>})
+                 : <span>Loading</span>
+             }</div>
          </div>
      )
     }
